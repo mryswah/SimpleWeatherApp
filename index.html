@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+	<title> AngularJS Weather Forecast</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<!-- AngularJS library -->
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+	<script type="text/javascript" src="app/services/geolocation.js"></script>
+	<script type="text/javascript" src="app/services/forecast.js"></script>
+	<link rel="stylesheet" href="app/styles/styles.css">
+</head>
+
+<body ng-app="weatherApp">
+	<div ng-controller="weatherAppController" class="container" id="main-container">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-centered" id="background">
+			<div class="container-fluid" id="title">
+				<h1>AngularJS Weather Forecast</h1>
+			</div>
+			<!-- User input -->
+			<div class="container-fluid" id="user-inputs">
+				<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-centered">
+					<form class="form-inline">
+						<div id="user-input">
+							<input ng-model="countrycode" ng-focus="popover.hidePopover()"
+								placeholder="Add a Country code for better results (e.g US)" type="text"
+								class="form-control" id="countrycode-user-input">
+							<input ng-model="zipcode" ng-focus="popover.hidePopover()"
+								placeholder="Enter Postal/Zip code" type="text" class="form-control"
+								id="zipcode-user-input">
+							<button ng-click="getWeather()" id="find-button">Find</button>
+						</div>
+					</form>
+				</div>
+			</div>
+			<!-- Weather Forecast Info -->
+			<div class="container-fluid" id="forecast-info">
+				<div ng-cloak ng-show="showWeather()">
+					<!-- Weather forecast for that day -->
+					<div class="row" id="forecast-row-one">
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-centered">
+							<div class="col-xs-12 col-sm-6 col-md6 col-lg-6" id="forecast-col-one">
+								<h2 class="address">{{address}}</h2>
+								<img ng-src="{{getIcon(forecast.data[0].weather.icon)}}" class="forecast-icon" />
+								<h3 class="forecast-temp">{{forecast.data[0].temp | number: 0}}°C</h3>
+								<div id="phw-block">
+									<p>Precipitation: {{forecast.data[0].precip | number: 0}}%</p>
+									<p>Humidity: {{forecast.data[0].rh | number: 0}}%</p>
+									<p>Wind: {{getWindSpeedKmPerH(forecast.data[0].wind_spd) | number: 0}}km/h</p>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="forecast-col-two">
+								<p class="forecast-weather">Weather</p>
+								<p class="forecast-day">{{(forecast.data[0].datetime) | date: 'EEEE'}}</p>
+								<p class="forecast-description">{{ forecast.data[0].weather.description }}</p>
+							</div>
+						</div>
+					</div>
+					<!-- Weather Forecast for that week (7 days) -->
+					<div class="row" id="forecast-row-two">
+						<div ng-repeat="day in forecast.data"
+							class="col-xs-4 col-sm-3 col-md-1 col-lg-1 forecast-col col-centered">
+							<p class="forecast-daily-day">{{(day.datetime) | date: 'EEE, MMM d'}}</p>
+							<img ng-src="{{getIcon(day.weather.icon)}}" />
+							<p class="forecast-daily-weather">{{ getWeatherDescription(day.weather.code,
+								day.weather.description) }}</p>
+							<p class="forecast-daily-high-temp">{{day.max_temp | number: 0}}°C</p>
+							<p class="forecast-daily-low-temp">{{day.min_temp | number: 0}}°C</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

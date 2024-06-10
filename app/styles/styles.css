@@ -1,0 +1,167 @@
+body {
+	background-color: #000000;
+}
+
+#main-container {
+	padding-top: 1%;
+}
+
+.col-centered {
+	float: none;
+	margin: 0 auto;
+}
+
+#background {
+	border-width: 1px;
+	border-style: solid;
+	padding: 10px 10px;
+	box-shadow: 10px 10px 5px #999999;
+}
+
+#title {
+	text-align: center;
+	color: #fff;
+}
+
+/* User Input */
+#countrycode-user-input {
+	width: 46%;
+	height: 50px;
+	/* float: left; */
+	border-radius: 0;
+}
+
+#zipcode-user-input {
+	width: 36%;
+	height: 50px;
+	/* float: left; */
+	border-radius: 0;
+}
+
+#find-button {
+	width: 15%;
+	height: 50px;
+	border-radius: 0;
+	margin-left: 1rem;
+}
+
+/* Popover error message, when there's no User Input or no API Response*/
+.popover {
+	padding : 0;
+	margin: 0 -7rem;
+}
+
+.popover-content {
+	background-color: coral;
+	color: #FFFFFF;
+	padding: 5px !important;
+	width: 37.1rem
+}
+
+.popover.bottom>.arrow:after {
+    margin-left: 3.5rem;
+	border-bottom-color: coral !important;
+}
+
+/* Weather Forecast Info, top row*/
+#forecast-info {
+	height: 587px;
+	margin-top: 10px;
+	padding-top: 10px;
+	text-align: center;
+	overflow: auto;
+}
+
+.forecast-info {
+	display: flex;
+	align-items: center;
+}
+
+#forecast-row-one .col-centered {
+	padding: 10px 10px;
+	overflow: hidden;
+	color: #fff;
+	display: flex;
+	width: 101.5rem;
+}
+
+#forecast-col-one {
+	line-height: 5px;
+	width: 60rem;
+}
+
+.address {
+	text-align: left;
+	padding-left: 2rem;
+}
+
+.forecast-icon {
+	margin-right: -9rem;
+	margin-left: 2rem;
+	width: 65px;
+	float: left;
+	padding-top: 1.5rem;
+}
+
+.forecast-temp {
+	display: inline-block;
+	font-size: 50px;
+}
+
+/* Precipitation, Humidity, Wind speed */
+#phw-block {
+	display: inline-block;
+	padding: 0rem 2rem;
+	font-size: 15px;
+	text-align: left;
+	line-height: 1rem;
+	vertical-align: bottom;
+}
+
+/* Weather Forecast Info, bottom row*/
+#forecast-col-two {
+	padding-right: 0rem;
+	position: relative;
+	top: 20px;
+	line-height: 30px;
+	font-size: 30px;
+	text-align: right;
+}
+
+#forecast-row-two .col-centered {
+	display: inline-block;
+	float: none;
+	margin-left: 0rem;
+}
+
+.forecast-col {
+	width: 125px;
+	margin: 10px 10px;
+	padding: 10px 0;
+	color: #fff;
+}
+
+.forecast-col p {
+	line-height: 12px;
+}
+
+.forecast-daily-day, .forecast-weather, .forecast-daily-weather {
+	font-weight: bold;
+}
+
+.forecast-day,
+.forecast-description {
+	font-size: 22px;
+	margin: 0 0 0;
+}
+
+.forecast-daily-high-temp { 
+	float: left;
+    padding-left: 2.5rem;
+}
+
+.forecast-daily-low-temp { 
+	float: left;
+    padding-left: 1.5rem;
+	color: #9aa0a6;
+}
